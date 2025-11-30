@@ -1,38 +1,157 @@
-# E-commerce Sales Forecasting Project
+# 📈 Sales Forecasting App
 
-This repository contains a complete machine learning project that forecasts e-commerce sales using a time-series model. This project was built as a portfolio piece to demonstrate skills in data analysis, model building, and evaluation.
+A modern, full-stack sales forecasting application that uses ARIMA time-series analysis to predict future sales. Built with React, Flask, and Python.
 
-## 📈 The Problem
+![Sales Forecaster Dashboard](docs/screenshot.png)
 
-Businesses, especially in e-commerce, need to accurately predict future sales to manage inventory, plan marketing budgets, and ensure healthy cash flow. This project solves that problem by providing a data-driven forecast.
+## ✨ Features
 
-## 🛠️ How It Works
+- **Interactive Dashboard**: Modern, responsive UI with real-time data visualization
+- **Data Upload**: Upload your own CSV sales data or use sample data
+- **ARIMA Forecasting**: Train machine learning models to predict future sales
+- **Performance Metrics**: View model accuracy, MAPE, MAE, and RMSE
+- **Confidence Intervals**: Visualize prediction uncertainty with upper/lower bounds
+- **Beautiful Charts**: Interactive charts built with Recharts
 
-1.  **Data Preparation:** The script loads historical sales data, cleans it, and prepares it for time-series analysis.
-2.  **Model Training:** An ARIMA (AutoRegressive Integrated Moving Average) model is trained on 80% of the historical data to learn its underlying trends and seasonal patterns.
-3.  **Evaluation:** The model's performance is tested on the remaining 20% of the data.
+## 🚀 Quick Start
 
-## 📊 Results
+### Prerequisites
 
-The model performed very well on the test data, achieving the following results:
+- Python 3.8+ 
+- Node.js 18+
+- npm or yarn
 
-* **Mean Absolute Percentage Error (MAPE):** 11.01% (Meaning the forecast is approximately **90% accurate**)
-* **Mean Absolute Error (MAE):** $54.18 (The forecast is, on average, off by about $54)
+### Backend Setup
 
-### Forecast vs. Actual Sales
-![Sales Forecast vs. Actual Data](URL_to_your_plot_image) 
-*(Note: To get this image, you can screenshot the plot from your notebook and upload it to the repository, then copy its URL here.)*
+```bash
+cd backend
 
-## 🚀 Future Forecast
+# Create virtual environment (recommended)
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 
-The final model, trained on all available data, was used to forecast sales for the next 30 days.
+# Install dependencies
+pip install -r requirements.txt
 
-![Future Forecast](URL_to_your_future_forecast_image)
+# Run the server
+python app.py
+```
 
-## 🔧 Technologies Used
+The API will be available at `http://localhost:5000`
 
-* Python
-* Pandas (for data manipulation)
-* Statsmodels (for the ARIMA model)
-* Scikit-learn (for evaluation metrics)
-* Matplotlib (for plotting)
+### Frontend Setup
+
+```bash
+cd frontend
+
+# Install dependencies
+npm install
+
+# Run development server
+npm run dev
+```
+
+The app will be available at `http://localhost:5173`
+
+## 📁 Project Structure
+
+```
+Sales-Forecasting-Portfolio/
+├── backend/
+│   ├── app.py              # Flask API with ARIMA model
+│   └── requirements.txt    # Python dependencies
+├── frontend/
+│   ├── src/
+│   │   ├── App.jsx         # Main React component
+│   │   ├── App.css         # Styling
+│   │   └── index.css       # Global styles
+│   ├── public/
+│   └── package.json
+├── Sales_Forecasting_Model_with_ARIMA.ipynb  # Original Jupyter notebook
+└── README.md
+```
+
+## 🔧 API Endpoints
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/api/health` | GET | Health check and status |
+| `/api/upload` | POST | Upload CSV sales data |
+| `/api/data` | GET | Get current sales data |
+| `/api/sample-data` | GET | Load sample demo data |
+| `/api/train` | POST | Train ARIMA model |
+| `/api/forecast` | POST | Generate future forecast |
+
+## 📊 Data Format
+
+The CSV file should have two columns:
+- `Date`: Date in any standard format (YYYY-MM-DD, MM/DD/YYYY, etc.)
+- `Sales`: Numeric sales values
+
+Example:
+```csv
+Date,Sales
+2023-01-01,450.25
+2023-01-02,520.00
+2023-01-03,480.75
+```
+
+## 🎨 UI Features
+
+- **Clean, Professional Design**: Warm orange color palette with subtle shadows
+- **Responsive Layout**: Works on desktop, tablet, and mobile
+- **Interactive Charts**: Hover for details, smooth animations
+- **Real-time Feedback**: Loading states, success/error notifications
+- **Tab Navigation**: Organized overview, forecast, and data views
+
+## 🔬 Technical Details
+
+### Performance Optimizations
+
+1. **Vectorized Calculations**: NumPy operations for fast metric computation
+2. **Efficient Data Processing**: Pandas optimizations for time series prep
+3. **Model Caching**: Trained models are cached to avoid redundant training
+4. **Lazy Loading**: Heavy dependencies loaded only when needed
+
+### ARIMA Model
+
+The app uses ARIMA(5,1,0) by default:
+- **p=5**: 5 autoregressive terms
+- **d=1**: 1 differencing step for stationarity
+- **q=0**: No moving average terms
+
+## 🛠️ Technologies Used
+
+### Backend
+- **Flask**: Lightweight Python web framework
+- **Pandas**: Data manipulation and analysis
+- **Statsmodels**: ARIMA time series modeling
+- **NumPy**: Numerical computing
+- **Scikit-learn**: Evaluation metrics
+
+### Frontend
+- **React 19**: Modern UI framework
+- **Vite**: Fast build tool
+- **Recharts**: Composable chart library
+- **Lucide React**: Beautiful icons
+
+## 📈 Example Results
+
+The model achieves:
+- **Accuracy**: ~89% (100% - MAPE)
+- **MAPE**: ~11% Mean Absolute Percentage Error
+- **MAE**: ~$54 Mean Absolute Error
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📄 License
+
+This project is open source and available under the MIT License.
+
+## 🙏 Acknowledgments
+
+- Original ARIMA implementation based on the Jupyter notebook
+- UI design inspired by modern dashboard patterns
+- Icons from Lucide
